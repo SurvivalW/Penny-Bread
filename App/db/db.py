@@ -6,7 +6,7 @@ conn = mysql.connector.connect(
     host = "localhost",
     port = 3307,
     user = "root",
-    password = "ishaSalvatore@1974",
+    password = "your password",
     database = "groceryApp"
 )
 
@@ -63,4 +63,34 @@ for store_id, filename in store_files.items():
             f"Need something like id/name/price/stock."
         )
 
-    
+    for _, row in df.iterrows():
+        product_id = int(row[id_col])
+        product_name = str(row[name_col]).strip()
+
+        price_val = pd.to_numeric(row[price_col], errors="coerce")
+        stock_val = pd.to_numeric(row[stock_col], errors="coerce")
+
+        if pd.isna(price_val):
+            continue  
+        if pd.isna(stock_val):
+            stock_val = 0
+
+        price = float(price_val)
+        stock = int(stock_val)
+        in_stock = stock > 0
+
+        if product_id not in product_cache:
+            cursor.execute(
+                "INSERT IGNORE INTO products (product_id, product_name) VALUES (%s, %s)",
+                (product_id, product_name)
+            )
+            product_cache.add(product_id)
+
+        cursor.execute("""
+            INSERT INTO inventory (store_id, product_id, price, stock, in_stock)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (store_id, product_id, price, stock, in_stock))
+
+conn.commit()
+cursor.close()
+conn.close()
