@@ -13,9 +13,7 @@ def index():
 def hello_world():
     return 'Hello World'
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000)
-    
+
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
@@ -54,3 +52,7 @@ def search_product():
     conn.close()
 
     return jsonify(results)
+
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
+    
