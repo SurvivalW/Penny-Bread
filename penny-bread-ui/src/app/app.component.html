@@ -2,14 +2,18 @@
     <header class="hero">
         <div class="hero-content">
             <h1 class="app-title">Penny Bread</h1>
-            <p class="app-tagline">Find the price near you!</p>
+            <p class="app-tagline">Find the lowest price near you!</p>
 
-        <!-- add Penny the Bread here (gif) -->
+            <img [src]="currentGif" alt="Penny the Loaf" class="mascot" (click)="playKissGif()" />
+
+            <div class="location">
+                <span>📍 {{ location }}</span>
+            </div>
         </div>
     </header>
 
     <main class="main-content">
-        <app-search></app-search>
+        <app-search [location]="location"></app-search>
     </main>
 
 </div>

@@ -2,3 +2,14 @@
   display: block;
   font-family: Arial, sans-serif;
 }
+
+.mascot {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.mascot:hover {
+  transform: scale(1.1) rotate(-2deg);
+}

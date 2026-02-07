@@ -1,5 +1,37 @@
-<div class="search-bar">
-  <!-- Item search -->
+<div class="search-container">
+  <div class="sidebar">
+    <div class="store-tags">
+      <button *ngFor="let store of stores"
+              [class.selected]="selectedStores.includes(store)"
+              (click)="selectStore(store)">
+        {{ store }}
+      </button>
+    </div>
+  </div>
+
+  <div class="main-area">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for an item..." [(ngModel)]="searchQuery" />
+      <button (click)="onSearch()">Search</button>
+    </div>
+
+    <div class ="results">
+      <div class="card product-card" *ngFor="let product of filteredProducts()">
+        <img [src]="product.imageUrl" [alt]="product.name" />
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          <p class="price">${{ product.price }}</p>
+          <p class="stock">In stock: {{ product.stock }}</p>
+          <p class="store">{{ product.store }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="search-bar">
+  // Item search
   <input
     [(ngModel)]="searchQuery"
     placeholder="Search for item"
@@ -7,7 +39,7 @@
 
   <button (click)="onSearch()">Search</button>
 
-  <!-- Location (locked) -->
+  // Location (locked)
   <input
     [(ngModel)]="location"
     readonly
@@ -28,4 +60,4 @@
 
 <div *ngIf="hasSearched && products.length === 0" class="no-results">
   <p>No results found for "{{ searchQuery }}".</p>
-</div>
+</div> -->

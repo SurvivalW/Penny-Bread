@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';  
 import { PriceService } from '../../services/price.service';
@@ -12,18 +12,39 @@ import { PriceService } from '../../services/price.service';
   providers: [PriceService]
 })
 export class SearchComponent {
+  @Input() location: string = '';
   searchQuery = '';
-  location = 'Wright State University, Ohio';
   products: any[] = [];
   hasSearched = false;
 
+  stores = ["Walmart", "Sam's Club", "Kroger", "Meijer", "Target"];
+  selectedStores: string[] = [];
+
   constructor(private priceService: PriceService, private cdr: ChangeDetectorRef) {}
 
- onSearch() {
-  this.hasSearched = true;
-  this.priceService.searchProducts(this.searchQuery).subscribe(data => {
-    this.products = data;
-    this.cdr.detectChanges();
-  })
+  selectStore(store: string) {
+    if (this.selectedStores.includes(store)) {
+      this.selectedStores = this.selectedStores = this.selectedStores.filter(s => s !== store);
+    } else {
+      this.selectedStores.push(store);
+    }
+  }
+
+  filteredProducts() {
+    return this.products.filter(p => {
+      const matchesQuery = p.name.toLowerCase() === this.searchQuery.toLowerCase();
+      const matchesStore = this.selectedStores.length
+        ? this.selectedStores.includes(p.store)
+        : true;
+      return matchesQuery && matchesStore;
+    });
+  }
+
+  onSearch() {
+    this.hasSearched = true;
+    this.priceService.searchProducts(this.searchQuery).subscribe(data => {
+      this.products = data;
+      this.cdr.detectChanges();
+    });
   }
 }

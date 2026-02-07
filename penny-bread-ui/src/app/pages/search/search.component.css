@@ -1,7 +1,49 @@
 .search-container {
-    max-width: 900px;
+    display: flex;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
+    gap: 2rem;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 140px; 
+}
+
+.store-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.store-tags button {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--clay);
+  background-color: var(--peach);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.store-tags button.selected {
+  background-color: var(--chambray);
+  color: white;
+  border-color: var(--chambray);
+}
+
+.store-tags button:hover {
+  transform: scale(1.05);
+}
+
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .search-bar {
@@ -29,5 +71,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200, 1fr));
     gap: 1.5rem;
+}
+
+.product-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
 }
 

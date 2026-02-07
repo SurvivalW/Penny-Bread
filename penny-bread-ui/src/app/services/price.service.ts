@@ -13,7 +13,7 @@ export class PriceService {
 
     searchProducts(query: string): Observable<any[]> {
         return this.http.get<any[]>(
-            `${this.apiUrl}/api/search_lowest?q=${query}`
+            `${this.apiUrl}/api/search?q=${query}`
         );
     }
 }

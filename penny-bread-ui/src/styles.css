@@ -28,6 +28,19 @@ body {
     margin: 0 auto;
 }
 
+.location {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--espresso);
+  background-color: var(--peach);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
 .app-title {
     font-family: 'DM Serif Display', serif;
     font-size: 3.5rem;
