@@ -12,8 +12,9 @@ export class PriceService {
     constructor(private http: HttpClient) {}
 
     searchProducts(query: string): Observable<any[]> {
+        const q = encodeURIComponent(query.trim());
         return this.http.get<any[]>(
-            `${this.apiUrl}/api/search?q=${query}`
+            `${this.apiUrl}/api/search?q=${q}`
         );
     }
 }

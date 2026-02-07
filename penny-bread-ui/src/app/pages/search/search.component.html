@@ -17,12 +17,12 @@
 
     <div class ="results">
       <div class="card product-card" *ngFor="let product of filteredProducts()">
-        <img [src]="product.imageUrl" [alt]="product.name" />
+        <!--<img [src]="product.imageUrl" [alt]="product.name" /> -->
         <div class="product-info">
-          <h3>{{ product.name }}</h3>
+          <h3>{{ product.product_name }}</h3>
           <p class="price">${{ product.price }}</p>
           <p class="stock">In stock: {{ product.stock }}</p>
-          <p class="store">{{ product.store }}</p>
+          <p class="store">{{ product.store_name }}</p>
         </div>
       </div>
     </div>

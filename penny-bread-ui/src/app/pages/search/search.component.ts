@@ -31,14 +31,20 @@ export class SearchComponent {
   }
 
   filteredProducts() {
-    return this.products.filter(p => {
-      const matchesQuery = p.name.toLowerCase() === this.searchQuery.toLowerCase();
-      const matchesStore = this.selectedStores.length
-        ? this.selectedStores.includes(p.store)
-        : true;
-      return matchesQuery && matchesStore;
-    });
-  }
+  const q = this.searchQuery.trim().toLowerCase();
+
+  return this.products.filter((p: any) => {
+    const matchesQuery =
+      !q || (p.product_name ?? "").toLowerCase().includes(q);
+
+    const matchesStore =
+      this.selectedStores.length === 0 ||
+      this.selectedStores.includes(p.store_name);
+
+    return matchesQuery && matchesStore;
+  });
+}
+
 
   onSearch() {
     this.hasSearched = true;
