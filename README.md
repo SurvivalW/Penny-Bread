@@ -14,7 +14,7 @@
   
   ![giphy](https://github.com/user-attachments/assets/c6aebcc6-2cb0-47a2-aa88-2a7dd0de7cee)
 
-## How to set up MySQL and Dbeaver?
+## How to set up MySQL and Dbeaver
 
 Links: 
 - https://dev.mysql.com/downloads/mysql/
