@@ -46,7 +46,7 @@ def search_product():
         JOIN stores s ON i.store_id = s.store_id
         WHERE p.product_name LIKE %s AND i.stock > 0
         ORDER BY i.price ASC
-        LIMIT 2
+        LIMIT 20
     """
 
     cursor.execute(sql, (f"%{query}%",))
